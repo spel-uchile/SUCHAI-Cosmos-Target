@@ -1,0 +1,78 @@
+COMMAND SUCHAI_TARGET START BIG_ENDIAN "Starts something on the example target."
+  #APPEND_ID_PARAMETER PACKET_ID 8 UINT 1 1 1 "Packet id"
+  APPEND_PARAMETER LABEL 0 STRING "COSMOS" "The label to apply"
+
+COMMAND SUCHAI_TARGET CLEAR_GND_WDT BIG_ENDIAN "Clear the GND watchdog timer counter to prevent the system reset."
+  APPEND_PARAMETER LABEL 0 STRING "clear_gnd_wdt" "The label to apply"
+
+COMMAND SUCHAI_TARGET COM_DEBUG BIG_ENDIAN "Show CSP debug information."
+  APPEND_PARAMETER LABEL 0 STRING "com_debug" "The label to apply"
+  
+COMMAND SUCHAI_TARGET DEBUG_OBC BIG_ENDIAN "Check if the OBC is working."
+  APPEND_PARAMETER LABEL 72 STRING "debug_obc" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER DEBUG_TYPE 0 STRING "0"  
+  
+COMMAND SUCHAI_TARGET EBF BIG_ENDIAN "Reset the satellite status variables to their default settings."
+  APPEND_PARAMETER LABEL 24 STRING "ebf" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER MAGIC 0 STRING "1010"
+
+COMMAND SUCHAI_TARGET GET_MEM BIG_ENDIAN "Debug system memory."
+  APPEND_PARAMETER LABEL 0 STRING "get_mem" "The label to apply"
+
+COMMAND SUCHAI_TARGET HELP BIG_ENDIAN "Show the list of available commands, id and parameters format."
+  APPEND_PARAMETER LABEL 0 STRING "help" "The label to apply"
+
+COMMAND SUCHAI_TARGET IDENT BIG_ENDIAN "Debug system memory."
+  APPEND_PARAMETER LABEL 0 STRING "get_mem" "The label to apply"
+
+COMMAND SUCHAI_TARGET PING BIG_ENDIAN "Send ping to node."
+  APPEND_PARAMETER LABEL 32 STRING "ping" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER PING 0 STRING "10" 
+  
+COMMAND SUCHAI_TARGET PRINT_VARS BIG_ENDIAN "Prints status variables."
+  APPEND_PARAMETER LABEL 0 STRING "print_vars" "The label to apply"
+  
+COMMAND SUCHAI_TARGET RESET BIG_ENDIAN "Reset (reboot) the system."
+  APPEND_PARAMETER LABEL 0 STRING "reset" "The label to apply"
+  
+COMMAND SUCHAI_TARGET RESET_WDT BIG_ENDIAN "Reset the watchdog timer."
+  APPEND_PARAMETER LABEL 0 STRING "reset_wdt" "The label to apply"
+  
+COMMAND SUCHAI_TARGET SAMPLE_OBC_SENSORS BIG_ENDIAN "Read OBC sensors, print the results and save the values to status repository."
+  APPEND_PARAMETER LABEL 0 STRING "sample_obc_sensors" "The label to apply"
+
+COMMAND SUCHAI_TARGET SEND_CMD BIG_ENDIAN "Send a command to node using the port assigned to console commands."
+  APPEND_PARAMETER LABEL 64 STRING "send_cmd" "The label to apply" 
+  APPEND_PARAMETER SPACE_1 8 STRING " "  
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER NEXT 0 STRING " "
+  
+COMMAND SUCHAI_TARGET SEND_STATUS BIG_ENDIAN "Send status variables as telemetry."
+  APPEND_PARAMETER LABEL 88 STRING "send_status" "The label to apply" 
+  APPEND_PARAMETER SPACE_1 8 STRING " "  
+  APPEND_PARAMETER DEST_NODE 0 STRING "10"
+    
+COMMAND SUCHAI_TARGET SHOW_TIME BIG_ENDIAN "Show the system time in the format given."
+  APPEND_PARAMETER LABEL 72 STRING "show_time" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER MODE 0 STRING "1"
+  
+COMMAND SUCHAI_TARGET SYSTEM BIG_ENDIAN "Execute a shell command by calling system()."
+  APPEND_PARAMETER LABEL 48 STRING "system" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER SYSTEM_COMMAND 0 STRING "echo hello world"
+  
+COMMAND SUCHAI_TARGET TEST BIG_ENDIAN "Display a test message."
+  APPEND_PARAMETER LABEL 32 STRING "test" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER MSG 0 STRING "hello world"
+  
+COMMAND SUCHAI_TARGET TEST_SYSTEM_VARS BIG_ENDIAN "Sets a value for every system status variable and reads it back, comparing it with the set value."
+  APPEND_PARAMETER LABEL 0 STRING "test_system_vars" "The label to apply"
+  
+COMMAND SUCHAI_TARGET TM_PARSE_STATUS BIG_ENDIAN "Parses a status variables telemetry."
+  APPEND_PARAMETER LABEL 0 STRING "tm_parse_status" "The label to apply"
