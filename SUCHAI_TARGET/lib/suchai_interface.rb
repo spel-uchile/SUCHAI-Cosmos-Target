@@ -31,14 +31,17 @@ module Cosmos
     def initialize(
       write_port,
       read_port,
-      node='10',
+      node='11',
+      remote='10',
       bind_address = 'localhost')
 
       super()
       
       if node != ''
-		@node = node.to_i().chr
+        @node = node.to_i().chr
       end
+      
+      @remote = remote
       
       @write_port = ConfigParser.handle_nil(write_port)
       #@write_port = write_port.to_i if @write_port
@@ -122,16 +125,13 @@ module Cosmos
     def write_interface(data)
       puts connected?
       write_interface_base(data)
-      _prompt = "[node(%{a_node}) port(%{a_port})] <message>: "
-	node = 1
-	port = 10
-       origin = 10
+      port = 10 # TC PORT
 	#         Prio SRC DST DP  SP RES HXRC
        header = "%02b%05b%05b%06b%06b00000000"
 
        if data.length > 0
              # Get CSP header and data
-             hdr = header % [1, origin.to_i, node, port, 63]
+             hdr = header % [1, @node.to_i, @remote.to_i, port, 63]
              #puts hdr
              # print("con:", hdr, hex(int(hdr, 2)))
              # print("con:", parse_csp(hex(int(hdr, 2))), data)
@@ -145,7 +145,7 @@ module Cosmos
              #hdr = hdr_b.join(', ')
              #puts hdr
              #print("Node: ", node.chr, "  Hdr: ", hdr, " Data: ", data)
-             msg = [node.chr] + hdr + data.split("")
+             msg = [@remote.chr] + hdr + data.split("")
 
              #msg = bytearray([node,]) + hdr + bytearray(data, "ascii")
              #print("con:", msg)
