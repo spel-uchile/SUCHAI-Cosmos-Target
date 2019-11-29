@@ -1,6 +1,6 @@
 # This is a segment of the main cmd_tlm_server.txt that will be used with
 # AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
 
-INTERFACE SUCHAI_INT suchai_interface.rb 8001 8002 11 1
+INTERFACE SUCHAI_INT suchai_interface.rb 8002 8001 11 1
   TARGET SUCHAI_TARGET
   DONT_CONNECT
