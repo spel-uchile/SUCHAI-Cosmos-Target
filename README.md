@@ -2,7 +2,7 @@
 The following readme its meant to teach how to 
 connect the Cosmos software to the SUCHAI-Flight-Software using ZMQ.
 
-##Things to install
+## Things to install
 
 the cosmos software is needed to be installed and updated, both of these can be done by following the tutorial in 
 https://cosmosrb.com/docs/installation/
@@ -14,15 +14,6 @@ https://github.com/spel-uchile/SUCHAI-Flight-Software
 Once this is done, the folder SUCHAI_TARGET must be placed in:
 <br>
 /cosmos_build/config/targets
-<br>
-<br>
-and the following file must be updated with the new target:
-<br>
-/cosmos_build/tools/cmd_tlm_server/cmd_tlm_server_chain.txt
-<br><br>
-To update it, add the following line:
-<br>
-TARGET SUCHAI_TARGET
  <br><br>
 An error may pop up about a missing ruby library. To fix this,
  the txt file "Gemfile" found in the root of cosmos_build, must be modified to compile the new library.
@@ -33,7 +24,7 @@ Adding the following line should fix the bug:
 gem 'ffi-rzmq'
 <br>
 
-##How to run
+## How to run
 
 To connect Cosmos with the FS(Flight Software) you need a terminal running the file
 zmqhub.py found in:<br> /SUCHAI-Flight-Software/sandbox/csp_zmq
