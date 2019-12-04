@@ -115,7 +115,7 @@ module Cosmos
        data[2] = data2[3]
        data[3] = data2[2]
        data[4] = data2[1]
-	Logger.instance.info(data)
+	   Logger.instance.info(data)
        read_interface_base(data) 
        return data
     end
