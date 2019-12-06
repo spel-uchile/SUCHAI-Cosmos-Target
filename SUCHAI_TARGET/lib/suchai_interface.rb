@@ -40,9 +40,11 @@ module Cosmos
       if node != ''
         @node = node.to_i().chr
       end
-      
-      @remote = remote
-      
+
+      if remote != ''
+        @remote = remote.to_i().chr
+      end
+
       @write_port = ConfigParser.handle_nil(write_port)
       #@write_port = write_port.to_i if @write_port
       @read_port = ConfigParser.handle_nil(read_port)
@@ -128,10 +130,10 @@ module Cosmos
       port = 10 # TC PORT
 	#         Prio SRC DST DP  SP RES HXRC
        header = "%02b%05b%05b%06b%06b00000000"
-
+       Logger.instance.info(data)
        if data.length > 0
              # Get CSP header and data
-             hdr = header % [1, @node.to_i, @remote.to_i, port, 63]
+             hdr = header % [1, @node.ord, @remote.ord, port, rand(11...64)]
              #puts hdr
              # print("con:", hdr, hex(int(hdr, 2)))
              # print("con:", parse_csp(hex(int(hdr, 2))), data)
@@ -150,6 +152,7 @@ module Cosmos
              #msg = bytearray([node,]) + hdr + bytearray(data, "ascii")
              #print("con:", msg)
              @write_socket.send_string(msg.join)
+
         end
 
         #sleep(0.25)
