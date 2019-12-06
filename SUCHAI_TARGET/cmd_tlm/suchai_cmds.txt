@@ -1,0 +1,216 @@
+COMMAND SUCHAI_TARGET START BIG_ENDIAN "Starts something on the example target."
+  #APPEND_ID_PARAMETER PACKET_ID 8 UINT 1 1 1 "Packet id"
+  APPEND_PARAMETER LABEL 0 STRING "COSMOS" "The label to apply"
+
+COMMAND SUCHAI_TARGET SEND_PAYLOAD BIG_ENDIAN "Send payload  telemetry."
+  APPEND_PARAMETER LABEL 96 STRING "send_payload" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER PAYLOAD_ID 8 STRING "0"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER DEST_NODE 0 STRING "10"
+
+COMMAND SUCHAI_TARGET DEBUG BIG_ENDIAN "Show CSP debug information."
+  APPEND_PARAMETER LABEL 0 STRING "com_debug" "The label to apply"
+
+COMMAND SUCHAI_TARGET COM_GET_CONFIG BIG_ENDIAN "Get TRX settings values."
+  APPEND_PARAMETER LABEL 112 STRING "com_get_config" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NAME 0 STRING "10"
+
+COMMAND SUCHAI_TARGET GET_NODE BIG_ENDIAN "Show current trx_node setting."
+  APPEND_PARAMETER LABEL 0 STRING "com_get_node" "The label to apply"
+
+COMMAND SUCHAI_TARGET PING BIG_ENDIAN "Send ping to node."
+  APPEND_PARAMETER LABEL 64 STRING "com_ping" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER PING 0 STRING "10"
+
+COMMAND SUCHAI_TARGET COM_RESET_WDT BIG_ENDIAN "Reset the watchdog timer."
+  APPEND_PARAMETER LABEL 104 STRING "com_reset_wdt" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 0 STRING "10"
+
+COMMAND SUCHAI_TARGET SEND_CMD BIG_ENDIAN "Send a command to node using the port assigned to console commands."
+  APPEND_PARAMETER LABEL 96 STRING "com_send_cmd" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER NEXT 0 STRING " "
+
+COMMAND SUCHAI_TARGET SEND_DATA BIG_ENDIAN "Sends telemetry data using CSP."
+  APPEND_PARAMETER LABEL 104 STRING "com_send_data" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 0 STRING "10"
+
+COMMAND SUCHAI_TARGET SEND_RPT BIG_ENDIAN "Send a message using the digi-repeater port, so its expect to receive the same message back."
+  APPEND_PARAMETER LABEL 96 STRING "com_send_rpt" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER MSG 0 STRING "10"
+
+COMMAND SUCHAI_TARGET SEND_TC BIG_ENDIAN "Send a Telecommand (TC) frame to node."
+  APPEND_PARAMETER LABEL 88 STRING "com_send_tc" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER CMD 0 STRING "test"
+
+COMMAND SUCHAI_TARGET SET_CONFIG BIG_ENDIAN "Set TRX settings values."
+  APPEND_PARAMETER LABEL 112 STRING "com_set_config" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER P_NAME 64 STRING "dummy"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER P_VALUE 0 STRING "dummy"
+
+COMMAND SUCHAI_TARGET SET_NODE BIG_ENDIAN "RSet module global variable trx_node."
+  APPEND_PARAMETER LABEL 96 STRING "com_set_node" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 0 STRING "10"
+
+COMMAND SUCHAI_TARGET COM_UPDATE_STATUS BIG_ENDIAN "Placeholder"
+  APPEND_PARAMETER LABEL 0 STRING "com_update_status" "The label to apply"
+
+
+
+COMMAND SUCHAI_TARGET ADD_HOURS_ALIVE BIG_ENDIAN "Update current hours alive and hours without reset counters adding <v> hours."
+  APPEND_PARAMETER LABEL 136 STRING "drp_add_hrs_alive" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER TIME 0 STRING "10"
+
+COMMAND SUCHAI_TARGET CLEAR_GND_WDT BIG_ENDIAN "Clear the GND watchdog timer counter to prevent the system reset."
+  APPEND_PARAMETER LABEL 0 STRING "drp_clear_gnd_wdt" "The label to apply"
+
+COMMAND SUCHAI_TARGET EBF BIG_ENDIAN "Reset the satellite status variables to their default settings."
+  APPEND_PARAMETER LABEL 56 STRING "drp_ebf" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER MAGIC 0 STRING "1010"
+
+COMMAND SUCHAI_TARGET GET_VARS BIG_ENDIAN "Prints status variables."
+  APPEND_PARAMETER LABEL 0 STRING "drp_get_vars" "The label to apply"
+
+COMMAND SUCHAI_TARGET SET_DEPLOYED BIG_ENDIAN "Set the variable `dat_dep_deployed` to a given value."
+  APPEND_PARAMETER LABEL 128 STRING "drp_set_deployed" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER DEPLOYED 0 STRING "1"
+
+COMMAND SUCHAI_TARGET SET_VAR BIG_ENDIAN " Update a system status variable <value> by <index> "
+  APPEND_PARAMETER LABEL 88 STRING "drp_set_var" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER VALUE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER INDEX 0 STRING "10"
+
+COMMAND SUCHAI_TARGET TEST_SYSTEM_VARS BIG_ENDIAN "Sets a value for every system status variable and reads it back, comparing it with the set value."
+  APPEND_PARAMETER LABEL 0 STRING "drp_test_system_vars" "The label to apply"
+
+ COMMAND SUCHAI_TARGET EPS_GET_CONFIG BIG_ENDIAN "Get and pretty print EPS settings."
+   APPEND_PARAMETER LABEL 0 STRING "eps_get_config" "The label to apply"
+
+ COMMAND SUCHAI_TARGET GET_HK BIG_ENDIAN "Get and pretty print EPS housekeeping information like voltage, current, etc."
+   APPEND_PARAMETER LABEL 0 STRING "eps_get_hk" "The label to apply"
+
+COMMAND SUCHAI_TARGET HARD_RESET BIG_ENDIAN "Send the hard reset command to the EPS"
+  APPEND_PARAMETER LABEL 0 STRING "eps_hard_reset" "The label to apply"
+
+COMMAND SUCHAI_TARGET SET_HEATER BIG_ENDIAN "Send the hard reset command to the EPS"
+  APPEND_PARAMETER LABEL 112 STRING "eps_set_heater" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING ""
+  APPEND_PARAMETER HEATER 8 STRING "0"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER MODE 0 STRING "0"
+
+COMMAND SUCHAI_TARGET EPS_UPDATE_STATUS BIG_ENDIAN "Update EPS related status system vars."
+  APPEND_PARAMETER LABEL 0 STRING "eps_update_status" "The label to apply"
+
+COMMAND SUCHAI_TARGET RESET BIG_ENDIAN "Reset (reboot) the system."
+  APPEND_PARAMETER LABEL 0 STRING "fp_reset" "The label to apply"
+
+COMMAND SUCHAI_TARGET SHOW BIG_ENDIAN "Show all the commands presents in the flight plan"
+  APPEND_PARAMETER LABEL 0 STRING "fp_show" "The label to apply"
+
+COMMAND SUCHAI_TARGET HELP BIG_ENDIAN "Show the list of available commands, id and parameters format."
+  APPEND_PARAMETER LABEL 0 STRING "help" "The label to apply"
+
+COMMAND SUCHAI_TARGET OBC_DEBUG BIG_ENDIAN "Check if the OBC is working."
+  APPEND_PARAMETER LABEL 72 STRING "obc_debug" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER DEBUG_TYPE 0 STRING "0"
+
+COMMAND SUCHAI_TARGET GET_MEM BIG_ENDIAN "Debug system memory."
+  APPEND_PARAMETER LABEL 0 STRING "obc_get_mem" "The label to apply"
+
+COMMAND SUCHAI_TARGET SAMPLE_OBC_SENSORS BIG_ENDIAN "Read OBC sensors, print the results and save the values to status repository."
+  APPEND_PARAMETER LABEL 0 STRING "obc_get_sensors" "The label to apply"
+
+COMMAND SUCHAI_TARGET SHOW_TIME BIG_ENDIAN "Show the system time in the format given."
+  APPEND_PARAMETER LABEL 96 STRING "obc_get_time" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER MODE 0 STRING "1"
+
+COMMAND SUCHAI_TARGET IDENT BIG_ENDIAN "Debug system memory."
+  APPEND_PARAMETER LABEL 0 STRING "obc_ident" "The label to apply"
+
+COMMAND SUCHAI_TARGET RESET_WDT BIG_ENDIAN "Reset the watchdog timer."
+  APPEND_PARAMETER LABEL 0 STRING "obc_reset_wdt" "The label to apply"
+
+COMMAND SUCHAI_TARGET SET_TIME BIG_ENDIAN "Set the system time only if is not running Linux"
+  APPEND_PARAMETER LABEL 96 STRING "obc_set_time" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER TIME 0 STRING "1"
+
+COMMAND SUCHAI_TARGET SYSTEM BIG_ENDIAN "Execute a shell command by calling system()."
+  APPEND_PARAMETER LABEL 80 STRING "obc_system" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER SYSTEM_COMMAND 0 STRING "echo hello world"
+
+COMMAND SUCHAI_TARGET OBC_UPDATE_STATUS BIG_ENDIAN "Read OBC sensors, print the results and save the values to status repository."
+  APPEND_PARAMETER LABEL 0 STRING "obc_update_status" "The label to apply"
+
+COMMAND SUCHAI_TARGET TEST BIG_ENDIAN "Display a test message."
+  APPEND_PARAMETER LABEL 32 STRING "test" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "   
+  APPEND_PARAMETER MSG 0 STRING "hello world"
+
+COMMAND SUCHAI_TARGET TM_PARSE_STATUS BIG_ENDIAN "Parses a status variables telemetry."
+  APPEND_PARAMETER LABEL 0 STRING "tm_parse_status" "The label to apply"
+
+COMMAND SUCHAI_TARGET SEND_STATUS BIG_ENDIAN "Send status variables as telemetry."
+  APPEND_PARAMETER LABEL 88 STRING "tm_send_status" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER DEST_NODE 0 STRING "10"
+
+COMMAND SUCHAI_TARGET GET_LAST BIG_ENDIAN "Print last struct data stored from specific payload."
+  APPEND_PARAMETER LABEL 88 STRING "tm_get_last" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER PAYLOAD 0 STRING "0"
+
+COMMAND SUCHAI_TARGET SEND_ALL BIG_ENDIAN "Send all structs data stored as payload in multiple csp frames from last acknowledge."
+  APPEND_PARAMETER LABEL 88 STRING "tm_send_all" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER PAYLOAD 16 STRING "0"
+
+COMMAND SUCHAI_TARGET SEND_FROM BIG_ENDIAN "Send k structs data stored as payload in multiple csp frames form last acknowledge."
+  APPEND_PARAMETER LABEL 96 STRING "tm_send_from" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER PAYLOAD 16 STRING "0"
+  APPEND_PARAMETER SPACE_3 8 STRING " "
+  APPEND_PARAMETER K_SAMPLES 0 STRING "0"
+
+COMMAND SUCHAI_TARGET SEND_LAST BIG_ENDIAN " Send last structs data stored as payload in csp frame."
+  APPEND_PARAMETER LABEL 96 STRING "tm_send_last" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER NODE 16 STRING "10"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER PAYLOAD 0 STRING "0"
+
+COMMAND SUCHAI_TARGET SET_ACK BIG_ENDIAN "Acknowledge k samples of a payload."
+  APPEND_PARAMETER LABEL 80 STRING "tm_set_ack" "The label to apply"
+  APPEND_PARAMETER SPACE_1 8 STRING " "
+  APPEND_PARAMETER PAYLOAD 16 STRING "0"
+  APPEND_PARAMETER SPACE_2 8 STRING " "
+  APPEND_PARAMETER K_SAMPLES 0 STRING "0"
