@@ -1,4 +1,6 @@
 REQUIRE suchai_interface.rb
+REQUIRE suchai_conversion.rb
+REQUIRE suchai_protocols.rb
 
 # Ignored Parameters
 # IGNORE_PARAMETER parameter_name

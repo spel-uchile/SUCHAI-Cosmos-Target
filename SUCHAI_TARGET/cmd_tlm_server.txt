@@ -1,6 +1,7 @@
 # This is a segment of the main cmd_tlm_server.txt that will be used with
 # AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
-
-INTERFACE SUCHAI_INT suchai_interface.rb 8002 8001 11 1
+#                                                from to
+INTERFACE SUCHAI_INT suchai_interface.rb 8002 8001 11 10
   TARGET SUCHAI_TARGET
   DONT_CONNECT
+  PROTOCOL WRITE OverrideProtocol
