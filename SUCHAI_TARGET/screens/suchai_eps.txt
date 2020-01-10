@@ -1,0 +1,29 @@
+SCREEN AUTO AUTO 1.0
+ TITLE "Data collected by EPS housekeeping"
+
+    HORIZONTAL
+
+      VERTICALBOX
+             SECTIONHEADER "Battery status data"
+             LABELVALUE SUCHAI_TARGET TM_PAYLOAD_EPS CURSUN
+             LABELVALUE SUCHAI_TARGET TM_PAYLOAD_EPS CURSYS
+             LABELVALUE SUCHAI_TARGET TM_PAYLOAD_EPS VBATT
+      END
+      VERTICALBOX
+             SECTIONHEADER "Battery status data"
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP1
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP2
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP3
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP4
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP5
+             LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP6
+      END
+    END
+
+      VERTICALBOX
+       NAMED_WIDGET SCRIPTNAME COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/eps_tab/*"].map {|x| File.basename(x) }.join(' ') %>
+       BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPTNAME").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
+
+      END
+       LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
+        SCREENSHOTBUTTON
