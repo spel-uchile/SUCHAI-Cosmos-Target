@@ -1,6 +1,8 @@
 SCREEN AUTO AUTO 1.0
 
 TABBOOK
+
+
   TABITEM TM_STATUS
     TITLE "<%= @target_name %> Suchai Status Information"
 
@@ -36,7 +38,18 @@ TABBOOK
         LABELVALUE SUCHAI_TARGET TM_STATUS DAT_EPS_CUR_SUN WITH_UNITS 20
       END
     END
-    BUTTON "Update Status" 'system("ruby #{Cosmos::USERPATH}/tools/ScriptRunner #{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/update_status.rb")'
+
+     VERTICALBOX
+               SECTIONHEADER "Script runner"
+      NAMED_WIDGET SCRIPT_BOX COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/*"].map {|x| File.basename(x) }.join(' ') %>
+         # Here as an example we're using the BACKGROUNDBUTTON which runs all the code in the background.
+         # Note we didn't need to use this here but it's an example of wrapping calls to the GUI in Qt.execute_in_main_thread.
+         # You need to use this button if your code blocks or takes a long time to execute so you don't hang the screen.
+     BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPT_BOX").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
+    END
+
+     BUTTON "Update Status" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 1, "next" =>"tm_send_status 10")'
+
       LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
       SCREENSHOTBUTTON
 
@@ -64,11 +77,11 @@ HORIZONTAL
                  LABELVALUELIMITSBAR SUCHAI_TARGET TM_PAYLOAD_EPS TEMP6
           END
 END
-
-      VERTICALBOX
-       NAMED_WIDGET SCRIPTNAME COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/temp_tab/*"].map {|x| File.basename(x) }.join(' ') %>
-       BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPTNAME").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
-      END
+ VERTICALBOX
+      SECTIONHEADER "Run cmd commands"
+      BUTTON "Get last telemetry" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 10, "next" =>"tm_send_last 10 10")'
+      BUTTON "Get all telemetries" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 1, "next" =>"tm_send_status 10 10")'
+END
        LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
        SCREENSHOTBUTTON
 
@@ -87,9 +100,12 @@ END
             LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Y
             LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Z
 
-            NAMED_WIDGET SCRIPTNAME COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/ads_tab/*"].map {|x| File.basename(x) }.join(' ') %>
-                 BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPTNAME").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
+         VERTICALBOX
+            SECTIONHEADER "Run cmd commands"
 
+         BUTTON "Get last telemetry" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 10, "next" =>"tm_send_last 11 10")'
+         BUTTON "Get all telemetries" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 1, "next" =>"tm_send_status 11 10")'
+         END
          END
 
 
@@ -115,9 +131,6 @@ END
    END
 
   END
-
-
-
 
 
 
@@ -150,8 +163,9 @@ END
     END
 
       VERTICALBOX
-       NAMED_WIDGET SCRIPTNAME COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/eps_tab/*"].map {|x| File.basename(x) }.join(' ') %>
-       BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPTNAME").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
+            SECTIONHEADER "Run cmd commands"
+      BUTTON "Get last telemetry" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 10, "next" =>"tm_send_last 12 10")'
+      BUTTON "Get all telemetries" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 1, "next" =>"tm_send_status 12 10")'
 
       END
        LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
