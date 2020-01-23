@@ -1,49 +1,42 @@
 SCREEN AUTO AUTO 1.0
-TITLE "Data collected by ADS sensors"
-   HORIZONTAL
-         VERTICALBOX
-            SECTIONHEADER "Magnetometer and Gyroscope data"
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_X
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Y
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Z
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_X
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Y
-            LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Z
 
-            NAMED_WIDGET SCRIPTNAME COMBOBOX <%= Dir["#{Cosmos::USERPATH}/config/targets/SUCHAI_TARGET/procedures/ads_tab/*"].map {|x| File.basename(x) }.join(' ') %>
-                 BACKGROUNDBUTTON 'Run Script' 'script = ""; Qt.execute_in_main_thread { script = get_named_widget("SCRIPTNAME").text }; Cosmos.run_cosmos_tool("ScriptRunner", "-r #{script}")'
-
-         END
-
-
-   TABBOOK
-     TABITEM Magnetometer_Graphs
+    TITLE "Data collected by ADS sensors"
         HORIZONTAL
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_X 5 400 200
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Y 5 400 200
+            VERTICALBOX
+                SECTIONHEADER "Magnetometer and Gyroscope data"
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_X
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Y
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Z
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_X
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Y
+                LABELVALUE SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Z
+                VERTICALBOX
+                    SECTIONHEADER "Run cmd commands"
+                    BUTTON "Get last telemetry" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 10, "next" =>"tm_send_last 11 10")'
+                    BUTTON "Get all telemetries" 'cmd("SUCHAI_TARGET", "com_send_cmd", "node" => 1, "next" =>"tm_send_status 11 10")'
+                END
+            END
+            TABBOOK
+                TABITEM Magnetometer_Graphs
+                    HORIZONTAL
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_X 5 400 200
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Y 5 400 200
+                    END
+                    HORIZONTAL
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Z 5 400 200
+                    END
+                END
+                TABITEM Gyroscope_Graphs
+                    HORIZONTAL
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_X 5 400 200
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Y 5 400 200
+                    END
+                    HORIZONTAL
+                        LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Z 5 400 200
+                    END
+                END
+            END
         END
-        HORIZONTAL
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS MAG_Z 5 400 200
-        END
-     END
-     TABITEM Gyroscope_Graphs
-        HORIZONTAL
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_X 5 400 200
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Y 5 400 200
-        END
-        HORIZONTAL
-            LINEGRAPH SUCHAI_TARGET TM_PAYLOAD_ADS ACC_Z 5 400 200
-        END
-     END
-   END
+        LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
+        SCREENSHOTBUTTON #"Name to display" "C/location/of/screenshots"(default is logs)
 
-  END
-
-
-
-
-
-
-      LABELVALUE SUCHAI_TARGET TM_STATUS DAT_RTC_DATE_TIME WITH_UNITS 30
-
-      SCREENSHOTBUTTON
