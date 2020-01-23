@@ -1,0 +1,2 @@
+COMMAND "0.00" "SUCHAI_TARGET COM_SEND_CMD with LABEL 'com_send_cmd', SPACE_1 ' ', NODE 10, SPACE_2 ' ', NEXT 'obc_get_sensors'"
+COMMAND "0.00" "SUCHAI_TARGET COM_SEND_CMD with LABEL 'com_send_cmd', SPACE_1 ' ', NODE 10, SPACE_2 ' ', NEXT 'tm_send_all 0'"
